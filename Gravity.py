@@ -22,7 +22,6 @@ class Planet:
         if position:
             self.position = position
         elif polar_position:
-            print(polar_position)
             self.position = self.cartesian_from_polar(polar_position)
 
         if max_speed:
@@ -34,9 +33,11 @@ class Planet:
         self.force = (0, 0)
 
     def cartesian_from_polar(self, polar_coords: tuple[float, float]) -> tuple[float, float]:
+
         r, theta = polar_coords
         x = r*cos(theta)
         y = r*sin(theta)
+
         return x, y
 
     def velocity_from_speed(self) -> tuple[float, float]:
@@ -141,5 +142,6 @@ class System:
 
         for planet_name, planet_traj in self.planet_traj.items():
             plt.plot(*planet_traj, label=planet_name)
+
         plt.legend()
         plt.show()
